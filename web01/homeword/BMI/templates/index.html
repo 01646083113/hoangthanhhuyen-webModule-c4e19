@@ -11,15 +11,15 @@
 <body>
     <h1>Your BMI = {{BMI}}</h1>
         {% if BMI < 16 %}
-            <p> BMI < 16: Severely underweigh </p>
+            Severely underweigh 
         {% elif  BMI < 18.5 %}
-            <p> 16 <= BMI < 18,5: Underweight </p>
+             Underweight
         {% elif BMI < 25 %}
-            <p> 18,5 <= BMI < 25 Normal </p>
+            Normal 
         {% elif BMI < 30 %}
-            <p> 25 <= BMI < 30 Overweight </p>
+            Overweight 
         {% else %}
-            <p> BMI > 30 Obese </p>
+          Obese 
         {% endif %}
 </body>
 </html>
