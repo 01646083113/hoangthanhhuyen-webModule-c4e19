@@ -9,7 +9,7 @@ def index():
      Mưa, mình chưa từng ghét mà ngược lại . 
     Nhưng dạo này nó cứ mang đến nỗi sợ cho mình mỗi đêm ,
     nó làm mình mất ngủ, nó làm mình suy nghĩ ... 
-    Tiên sư cha chúng nó, mất điện ngủ éo làm được bài tập ! :-@
+    Tiên sư cha chúng nó, mất điện éo làm được bài tập ! :-@
              """
 
 @app.route('/user/<username>')
