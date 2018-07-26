@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return ("")
+    return ("Sử dụng render_template ")
 
 @app.route('/bmi/<int:weight>/<int:height>')
 def calc(weight, height):
