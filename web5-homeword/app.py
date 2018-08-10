@@ -26,12 +26,16 @@ def login_admin():
             session['logged_admin'] = True
             return redirect(url_for('admin'))
         else:
-            return redirect(url_for('login_admin'))
+            return "Bạn nhập sai tên tài khoản hoặc mật khẩu."
+
 
 @app.route('/logout_admin')
 def log_out_admin():
-    del session['logged_admin']
-    return redirect(url_for('index'))
+    if 'logged_admin' in session:
+        del session['logged_admin']
+        return redirect (url_for('index'))
+    else:
+        return "Bạn chưa đăng nhập"
 
 @app.route('/admin')
 def admin():
@@ -153,7 +157,7 @@ def login():
         password = form['password']
         account = User.objects(username=username, password=password).first()
         if account == None:
-            return redirect(url_for('log_in'))
+            return "Bạn nhập sai tên tài khoản hoặc mật khẩu."
         else:
             session['logged_in'] = str(account['id'])
 
@@ -161,8 +165,11 @@ def login():
 
 @app.route('/logout')
 def logout():
-    del session['logged_in']
-    return redirect(url_for('index'))
+    if 'logged_in' in session:
+        del session['logged_in']
+        return redirect (url_for('index'))
+    else:
+        return "Bạn chưa đăng nhập."
 
 @app.route('/order/<service_id>')
 def new_order(service_id):
@@ -170,7 +177,7 @@ def new_order(service_id):
     if service['status'] == 1:
         return "Người này đã có khách thuê, vui lòng chọn nhân viên khác"
     else:
-        user_id = session['logged_user']
+        user_id = session['logged_in']
         user = User.objects.with_id(user_id)
         time ='{0:%H:%M %d/%m}'.format(datetime.now())
         is_accepted = False
@@ -196,7 +203,7 @@ def show_user_order(user_id):
 def del_order(order_id):
         all_order = Order.objects.with_id(order_id)
         all_order.delete()
-        return redirect(url_for('show_user_order', user_id=session['logged_user']))
+        return redirect(url_for('show_user_order', user_id=session['logged_in']))
 
 @app.route('/order-click/<order_id>')
 def order(order_id):
